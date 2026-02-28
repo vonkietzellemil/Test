@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="images/stacked-logo.png">
+    <title>Stacked - List Overview</title>
+
+    <link rel="stylesheet" href="styles/general.css">
+    <link rel="stylesheet" href="styles/menu.css">
+    <link rel="stylesheet" href="styles/modals.css">
+    <link rel="stylesheet" href="styles/section1.css">
+    <link rel="stylesheet" href="styles/section2.css">
+    <link rel="stylesheet" href="styles/theme.css">
+    <link rel="stylesheet" href="styles/small-devices.css">
+
+    <!-- Android PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0e1117">
+  </head>
+  <body>
+    <div class="container">
+      <header class="header-container">
+        <h1 class="header">Stacked</h1>
+        <label class="theme-switch">
+          <input type="checkbox" id="themeToggle">
+          <span class="slider round"></span>
+        </label>
+      </header>
+      
+      <main id="mainContent">
+
+        <!-- VIEW: LIST OVERVIEW -->
+        <section id="view-overview">
+          <section id="overviewSection">
+            <div id="listsContainer"></div>
+          </section>
+        </section>
+
+        <!-- VIEW: SINGLE LIST -->
+        <section id="view-list" hidden>
+          <section id="list-top">
+            <div class="list-title">
+              <div class="back-btn-container">
+                <button id="backToOverviewBtn" class="back-btn" type="button">
+                  <img class="back-icon" src="images/back-icon.svg">
+                </button>
+              </div>
+              <div class="current-list-title-container">
+                <h2 id="currentListTitle"></h2>
+              </div>
+              <button id="openListSettingsBtn" class="open-list-settings-btn" type="button">
+                <img src="images/slider-horizontal-icon.svg">
+              </button>
+            </div>
+            
+            <section id="listSection1">
+              <input id="input" class="title-input" type="text" placeholder="Neuen Eintrag hinzufügen…">
+              <button data-i18n="addToListBtn" id="addToListBtn" class="standard-btn" type="button">hinzufügen</button>
+            </section>
+          </section>
+
+          <!-- WICHTIG: eigener Rows-Container für die List View -->
+          <section id="listSection2">
+            <div id="listRows"></div>
+          </section>
+        </section>
+
+        <!-- VIEW: List Settings -->
+        <section id="view-list-settings" hidden>
+          <section id="list-top">
+            <div class="list-title">
+              <div class="back-btn-container">
+                <button id="backToListBtn" class="back-btn" type="button">
+                  <img class="back-icon" src="images/back-icon.svg">
+                </button>
+              </div>
+              <div class="current-list-title-container">
+                <h2 id="currentListSettingsTitle"></h2>
+                <!-- <p>settings</p> -->
+              </div>
+              <button class="open-list-settings-stats-btn" type="button">
+                <img src="images/info-icon.svg">
+                <div class="list-stats">
+                  <p class="list-stat-title">Name:</p>
+                  <span id="listStatsName" class="list-stat-value">-</span>
+                  <p class="list-stat-title">Einträge:</p>
+                  <span id="listStatsEntryCount" class="list-stat-value">0</span>
+                  <p class="list-stat-title">Gesamt-Counter:</p>
+                  <span id="listStatsCounterSum" class="list-stat-value">0</span>
+                </div>
+              </button>
+            </div>
+          </section>
+          <div id="listSettings" class="list-settings">
+            <div>
+              <p class="list-settings-section-title">Optionen:</p>
+              <div id="listSettingsOptionsContainer" class="list-settings-section">
+                <label for="listSettingsEnableCounterCheckbox" class="list-option-label">
+                  Zähler
+                  <input id="listSettingsEnableCounterCheckbox" class="list-option-checkbox" type="checkbox">
+                </label>
+              </div>
+
+              <p class="list-settings-section-title">Sortierung der Einträge:</p>
+              <div class="list-settings-section">
+                <label class="list-option-label">
+                  Manuell
+                  <input type="radio" name="listRowSortSelect" value="manual" class="list-option-checkbox">
+                </label>
+                
+                <label class="list-option-label">
+                  Alphabetisch
+                  <input type="radio" name="listRowSortSelect" value="alphabetical" class="list-option-checkbox">
+                </label>
+
+                <label class="list-option-label">
+                  Nach Zähler
+                  <input type="radio" name="listRowSortSelect" value="count" class="list-option-checkbox">
+                </label>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+
+      <!-- Menu at the Bottom -->
+      <footer class="menu-container">
+        <button id="openSettingsBtn" class="menu-btn" class="menu-side-btn">        
+          <img class="menu-icon" src="images/settings-icon.svg">
+        </button>
+        <a href="second-page.html">
+          <button data-i18n="configureNewListBtn" id="configureNewListBtn" class="menu-btn">
+          Liste erstellen
+        </button>
+        </a>
+        <button class="menu-btn">        
+          <img class="menu-icon" class="menu-side-btn" src="images/help-icon.svg">
+        </button>
+      </footer>
+    </div>
+    
+    <div id="modalContainer"></div>
+
+    <div id="settingsModalContainer" class="settings-modal-container hidden">
+      <div class="settings-modal hidden">
+
+        <!-- 🔥 Drag Handle -->
+        <div id="settingsDragHandle">
+          <span class="settings-drag-bar"></span>
+        </div>
+
+        <!-- ================= ROOT SETTINGS PAGE ================= -->
+        <div id="settingsPageRoot" class="settings-page">
+          <div class="settings-header-container">
+            <h1>Einstellungen</h1>
+            <button id="closeSettingsBtn" class="settings-done-btn">Fertig</button>
+          </div>
+
+          <div class="settings-section">
+            <p class="settings-subsection-title">Erscheinung</p>
+            <button class="settings-nav-btn first-settings-subsection" id="openThemePageBtn">
+              Theme →
+            </button>
+
+            <button class="settings-nav-btn first-settings-subsection" id="openSortPageBtn">
+              Sortierung →
+            </button>
+
+
+            <p class="settings-subsection-title">Stastistiken</p>
+            <button class="settings-nav-btn second-settings-subsection" id="openStatsPageBtn">
+              Statistiken →
+            </button>
+
+       
+            <p class="settings-subsection-title">Performance</p>
+            <button class="settings-nav-btn third-settings-subsection" id="openPerformancePageBtn">
+              Leistung →
+            </button>
+         
+
+            <p class="settings-subsection-title">Daten Sichern / Herunterladen</p>
+            <button class="settings-nav-btn fourth-settings-subsection" id="exportDataBtn">
+              Daten exportieren
+            </button>
+
+            <button class="settings-nav-btn fourth-settings-subsection" id="importDataBtn">
+              Daten importieren
+            </button>
+
+            <button class="settings-nav-btn fourth-settings-subsection" id="createBackupBtn">
+              Backup erstellen
+            </button>
+
+            <button class="settings-nav-btn fourth-settings-subsection" id="restoreBackupBtn">
+              Backup wiederherstellen
+            </button>
+
+
+            <p class="settings-subsection-title">Andere</p>
+            <button class="settings-nav-btn settings-subsection-other" id="exportDataBtn">
+              Sprache
+            </button>
+
+            <button class="settings-nav-btn settings-subsection-other" id="importDataBtn">
+              Alle Daten Löschen
+            </button>
+            
+
+            <!-- hidden file input -->
+            <input type="file" id="importFileInput" accept=".json" hidden>
+          </div>
+        </div>
+
+        <!-- ================= THEME PAGE ================= -->
+        <div id="settingsPageTheme" class="settings-page hidden">
+          <div class="settings-header-container">
+            <button id="backToSettingsRootFromThemeBtn" class="settings-back-btn">← Zurück</button>
+            <h1>Theme</h1>
+            <button id="themeDoneBtn" class="settings-done-btn">Fertig</button>
+          </div>
+
+          <div class="settings-section theme-options">
+            <p class="settings-subsection-title">Wähle das Erscheinungsbild aus</p>
+            <label>
+              <input type="radio" name="themeSelect" value="system">
+              System
+            </label>
+
+            <label>
+              <input type="radio" name="themeSelect" value="light">
+              Light
+            </label>
+
+            <label>
+              <input type="radio" name="themeSelect" value="dark">
+              Dark
+            </label>
+          </div>
+        </div>
+
+        <!-- ================= SORTING PAGE ================= -->
+        <div id="settingsPageSort" class="settings-page hidden">
+          <div class="settings-header-container">
+            <button id="backToSettingsRootFromSortBtn" class="settings-back-btn">← Zurück</button>
+            <h1>Sortierung</h1>
+            <button id="sortDoneBtn" class="settings-done-btn">Fertig</button>
+          </div>
+
+          <div class="settings-section theme-options">
+            <p class="settings-subsection-title">Sortierung der Listen</p>
+
+            <label>
+              <input type="radio" name="listSortSelect" value="manual">
+              Manuell
+            </label>
+
+            <label>
+              <input type="radio" name="listSortSelect" value="alphabetical">
+              Alphabetisch
+            </label>
+
+            <label>
+              <input type="radio" name="listSortSelect" value="created">
+              Nach Erstellungsdatum
+            </label>
+          </div>
+        </div>
+
+        <!-- ================= STATS PAGE ================= -->
+        <div id="settingsPageStats" class="settings-page hidden">
+          <div class="settings-header-container">
+            <button id="backToSettingsRootFromStatsBtn" class="settings-back-btn">← Zurück</button>
+            <h1>Statistiken</h1>
+            <button id="statsDoneBtn" class="settings-done-btn">Fertig</button>
+          </div>
+
+          <div class="settings-section stats-options">
+
+            <div class="card-stack">
+              <div class="stat-card">
+                <div class="stat-peek">
+                  <p class="stat-label">Gesamte Listen</p>
+                </div>
+                <div class="stat-body">
+                  <p id="totalListsStat" class="stat-value">0</p>
+                </div>
+              </div>
+
+              <div class="stat-card">
+                <div class="stat-peek">
+                  <p class="stat-label">Gesamte Einträge</p>
+                </div>
+                <div class="stat-body">
+                  <p id="totalRowsStat" class="stat-value">0</p>
+                </div>
+              </div>
+
+              <div class="stat-card">
+                <div class="stat-peek">
+                  <p class="stat-label">Größte Liste</p>
+                </div>
+                <div class="stat-body">
+                  <p id="largestListStat" class="stat-value">-</p>
+                </div>
+              </div>
+
+              <div class="stat-card">
+                <div class="stat-peek">
+                  <p class="stat-label">Ø Einträge pro Liste</p>
+                </div>
+                <div class="stat-body">
+                  <p id="avgRowsStat" class="stat-value">0</p>
+                </div>
+              </div>
+
+              <div class="stat-card">
+                <div class="stat-peek">
+                  <p class="stat-label">Leere Listen</p>
+                </div>
+                <div class="stat-body">
+                  <p id="emptyListsStat" class="stat-value">0</p>
+                </div>
+              </div>
+
+              <div class="stat-card">
+                <div class="stat-peek">
+                  <p class="stat-label">Gesamt-Counter Summe</p>
+                </div>
+                <div class="stat-body">
+                  <p id="counterSumStat" class="stat-value">0</p>
+                </div>
+              </div>
+
+              <div class="stat-card">
+                <div class="stat-peek">
+                  <p class="stat-label">Meistgeklickter Eintrag</p>
+                </div>
+                <div class="stat-body">
+                  <p id="mostClickedStat" class="stat-value">0</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+
+        <!-- ================= PERFORMANCE PAGE ================= -->
+        <div id="settingsPagePerformance" class="settings-page hidden">
+          <div class="settings-header-container">
+            <button id="backToSettingsRootFromPerformanceBtn" class="settings-back-btn">← Zurück</button>
+            <h1>Leistung</h1>
+            <button id="performanceDoneBtn" class="settings-done-btn">Fertig</button>
+          </div>
+
+          <div class="settings-section theme-options">
+            <p class="settings-subsection-title">Reduce Lag Mode</p>
+            <p class="settings-subsection-subtitle">(Hat keinen Einfluss auf die Erscheinung)</p>
+
+            <label>
+              <input type="radio" name="performanceModeSelect" value="auto">
+              Automatisch (empfohlen)
+            </label>
+
+            <label>
+              <input type="radio" name="performanceModeSelect" value="on">
+              Immer aktiv
+            </label>
+
+            <label>
+              <input type="radio" name="performanceModeSelect" value="off">
+              Aus
+            </label>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
+    <script defer src="scripts/modal.js"></script>
+    <script defer src="scripts/swipe-to-delete.js"></script>
+    <script defer src="scripts/storage.js"></script>
+    <script defer src="scripts/settings.js"></script>
+    <script defer src="scripts/overview.js"></script>
+    <script defer src="scripts/list.js"></script>
+    <script defer src="scripts/router.js"></script>
+    <script defer src="scripts/service-worker.js"></script>
+    <script defer src="scripts/lang.js"></script>
+    <script defer src="scripts/theme.js"></script>
+    
+    <!-- Android PWA -->
+    <script defer src="scripts/pwa.js"></script>
+  </body>
+</html>

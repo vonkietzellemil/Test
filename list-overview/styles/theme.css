@@ -1,0 +1,131 @@
+/* The switch - the box around the slider */
+.theme-switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  transition: 0.2s;
+}
+
+/* Hide default HTML checkbox */
+.theme-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--main-bg);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
+  -webkit-transition: .4s;
+  transition: box-shadow 0.15s, all 0.4s;
+}
+
+.slider:hover {
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.5);
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background: var(--gradient-color-to-right);
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.theme-switch input:checked + .slider {
+  background: var(--gradient-color-to-right);
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+  background: white;
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/* Actual Darkmode Theme */
+:root {
+  --main-bg: rgb(245, 245, 245);
+  --main-color: rgb(0, 0, 0);
+  --gradient-color-to-right: linear-gradient(to right, #ff3737, #ffb41e);
+  --gradient-color-to-left: linear-gradient(to left, #ff3737, #ffb41e);
+  --gradient-color-animation: linear-gradient(90deg, #ff3737, #ffb41e, #ff3737);
+
+  --checkbox-checked-color: #ff3737;
+  --checkbox-checked-bg-color: #ffb41e1f;
+
+  --settings-modal-bg: var(--main-bg);
+}
+
+body.dark {
+  --main-bg: rgb(0, 0, 0);
+  --main-color: white;
+  --gradient-color-to-right: linear-gradient(to right, #4a6fff, #1ef0ff);;
+  --gradient-color-to-left: linear-gradient(to left, #4a6fff, #1ef0ff);;
+  --gradient-color-animation: linear-gradient(90deg, #4a6fff, #1ef0ff, #4a6fff);
+
+  --checkbox-checked-color: #1ef0ff;
+  --checkbox-checked-bg-color: #4a6fff1f;
+
+  --settings-modal-bg: rgb(44, 44, 44);
+}
+
+body.dark .slider {
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
+}
+
+body.dark .slider:hover {
+  box-shadow: 0 0 7px rgba(255, 255, 255, 1);
+}
+
+body.dark .standard-btn,
+body.dark .menu-btn {
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
+}
+
+body.dark .row:hover {
+  border-left: 1px solid gray;
+  border-right: 1px solid gray;
+  border-bottom: 1px solid var(--main-bg);
+  box-shadow: 0 0px 8px rgba(255, 255, 255, 0.9);
+}
+
+body.dark img,
+body.dark .delete-icon {
+  filter: invert();
+}
+body.dark .counter-plus-btn,
+body.dark .counter-minus-btn {
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+body.dark #editRowContentInput {
+  background: #111;
+  color: white;
+  border-color: rgba(255,255,255,0.2);
+}

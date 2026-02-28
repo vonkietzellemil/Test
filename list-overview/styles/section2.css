@@ -1,0 +1,415 @@
+#listSection2 {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+
+  /* Firefox */
+  scrollbar-width: none;
+
+  /* IE / Edge alt */
+  -ms-overflow-style: none;
+}
+
+/* Chrome, Edge, Safari */
+#listSection2::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  background: rgba(0, 0, 0, 0.15);
+}
+
+#overviewSection,
+#listSection2 {
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+#overviewSection::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.empty-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  padding: 0 0 0 8px;
+  border-right: 1px solid rgba(255, 255, 255, 0);
+  border-left: 1px solid rgba(255, 255, 255, 0);
+  border-bottom: 1px solid gray;
+  position: relative;
+  transition: 0.7s;
+  touch-action: pan-y;   /* vertikal scrollen weiterhin möglich */
+}
+
+.row.drag-ghost {
+  box-shadow: 0 0px 15px rgba(255, 255, 255, 0.9);
+  background-color: rgb(218, 218, 218);
+}
+
+body.dark .row.drag-ghost {
+  box-shadow: 0 0px 15px rgba(255, 255, 255, 0.9);
+  background-color: rgb(20, 20, 20);
+}
+
+.row:hover {
+  border-left: 1px solid gray;
+  border-right: 1px solid gray;
+  border-bottom: 1px solid white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  padding: 10px 10px 10px 8px;
+}
+
+.row:hover .drag-handle {
+  opacity: 1;
+  border-right: 1px solid gray;
+}
+
+.row:hover .delete-icon-container,
+.row:hover .edit-icon-container {
+  width: 40px;
+  opacity: 1;
+}
+
+.row:hover .delete-icon-container {
+  padding-right: 4px;
+}
+
+.row:hover .edit-icon-container {
+  padding: 0 4px 0 4px;
+  border-color: gray;
+
+  margin-right: 6px;
+}
+
+.row:hover .counter {
+  padding: 10px 4px 10px 0;
+}
+
+.row:hover .counter-plus-btn,
+.row:hover .counter-minus-btn {
+  width: 50px;
+  height: 50px;
+  opacity: 1;
+  pointer-events: all;
+  margin: 0 4px;
+}
+
+.row:hover .open-btn {
+  width: 50px;
+  height: 50px;
+  opacity: 1;
+  pointer-events: all;
+  margin: 0 4px;
+}
+
+.row::before,
+.row::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: var(--gradient-color-to-right);
+  bottom: -1px;
+  left: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease-out;
+  border: none;
+}
+
+.row:hover::after,
+.row:hover::before {
+  transform: scaleX(1);
+}
+
+.title-container {
+  display: flex;
+  flex: 1 1 0;
+  align-items: stretch;
+  gap: px;
+}
+
+.delete-icon-container,
+.edit-icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 0px;
+  opacity: 0;
+
+  cursor: pointer;
+  transition: all 0.4s;
+
+  border-right: 1px solid gray;
+}
+
+.delete-icon {
+  width: 100%;
+  height: 100%;
+}
+
+.drag-handle {
+  width: 25px;
+  height: 50px;
+  font-size: 24px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+  user-select: none;
+  opacity: 0.7;
+
+  padding-right: 6px;
+
+  touch-action: none;    /* auf handle darf drag starten */
+  -webkit-touch-callout: none;
+  user-select: none;
+}
+
+.drag-handle.disabled {
+  display: none;
+}
+
+.drag-handle:active {
+  cursor: grabbing;
+}
+
+.edit-icon {
+  width: 76%;
+  height: 76%;
+}
+
+.title {
+  font-family: 
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Text",
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+  font-size: 20px;
+  margin: auto 0 auto 0;
+  color: var(--main-color);
+
+  flex: 1 1 0;
+  width: 0;
+
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.counter-btn-container {
+  transition: all 0.5s;
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.counter {
+  font-family: monospace, 'Courier New', Courier;
+  font-size: 22px;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  padding: 10px 0;
+  transition: all 0.5s;
+}
+
+.counter-plus-btn, .counter-minus-btn {
+  width: 0px;
+  height: 0px;
+  border: none;
+  border-radius: 50%;
+  background-color: var(--main-bg);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+
+  pointer-events: none;
+  margin: 0 5px 0 0;
+  padding: 0;
+  opacity: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.5s;
+}
+
+.counter-btn-icon {
+  width: 40%;
+  height: 40%;
+  transition: 0.4s;
+}
+
+.counter-plus-btn:hover .counter-btn-icon,
+.counter-minus-btn:hover .counter-btn-icon {
+  width: 80%;
+  height: 80%;
+  transform: rotate(180deg);
+}
+
+.open-btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.open-btn {
+  width: 0px;
+  height: 0px;
+  background-color: var(--main-bg);
+  box-sizing: border-box;
+  border-radius: 100px;
+  border: 2px var(--main-color) dotted;
+  cursor: pointer;
+
+  pointer-events: none;
+  margin: 0 0;
+  opacity: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.5s;
+}
+
+.open-icon {
+  width: 100%;
+  height: 100%;
+  transition: 0.4s;
+  transform: rotate(180deg);
+}
+
+.open-btn:hover  .open-icon {
+  width: 85%;
+  height: 85%;
+}
+
+#listsContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+#listRows {
+  display: flex;
+  flex-direction: column;
+}
+
+#overviewSection {
+  overflow-y: auto;   /* sicherstellen */
+  flex: 1;
+  min-height: 0;
+}
+
+
+
+
+
+/* List Settings */
+.view-list-settings {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  flex: 1;
+}
+
+.open-list-settings-stats-btn {
+  background-color: var(--main-bg);
+  width: 40px;
+  height: 40px;
+  box-sizing: border-box;
+  border-radius: 100px;
+  border: 2px var(--main-color) dotted;
+  cursor: pointer;
+
+  position: relative;
+}
+
+.open-list-settings-stats-btn img {
+  width: 100%;
+  height: 100%;
+}
+
+.open-list-settings-stats-btn.active .list-stats,
+.open-list-settings-stats-btn.active .list-stats::after {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.list-stats {
+  background-color: var(--main-bg);
+  color: var(--main-color);
+  border: 2px solid var(--main-color);
+  border-radius: 10px;
+  padding: 10px;
+  min-width: 200px;
+  height: fit-content;
+  transition: opacity 0.15s ease;
+
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+
+  position: absolute;
+  top: 150%;
+  right: -18px;
+
+  opacity: 0;
+  pointer-events: none;
+}
+
+.list-stats::after {
+  content: "";
+  position: absolute;
+  top: -12px;           /* über der Box */
+  right: 22px;         /* horizontal ausrichten */
+  
+  border-width: 0 12px 12px 12px;
+  border-style: solid;
+  border-color: transparent transparent var(--main-color) transparent;
+
+  opacity: 0;
+  pointer-events: none;
+}
+
+.list-stat-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0 0 8px 0;
+}
+
+.list-stat-value {
+  font-size: 14px;
+  margin: 0px 0px 8px 10px;
+}
+
+
+/* List Settings */
+.list-settings {
+  border-radius: 10px;
+  flex: 1;
+  padding: 10px;
+}
+
+.list-settings-section-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 10px 5px;
+}
+
+.list-settings-section {
+  display: flex;
+  gap: 10px;
+  margin: 0 0 50px 0;
+}
