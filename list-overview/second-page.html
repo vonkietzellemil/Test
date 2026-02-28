@@ -2,6 +2,15 @@
 <html>
 <head></head>
 <body>
-  <p>Hello</p>
+  <p id="p">Hello</p>
+
+  <script>
+    const theme = localStorage.getItem("theme");
+    const p = document.getElementById("p");
+    console.log(theme);
+    console.log(p);
+
+    p.innerHTML = "Your theme is: " + theme
+  </script>
 </body>
 </html>
