@@ -1,0 +1,65 @@
+@media (pointer: coarse) {
+  .row {
+    touch-action: pan-y;
+    user-select: none;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+  }
+
+  .row.swiping {
+    transition: none;
+  }
+
+  .row.delete-ready {
+    background: rgba(255, 0, 0, 0.08);
+  }
+
+  body.dark .row.delete-ready {
+    background-color: rgba(255, 0, 0, 0.5);
+  }
+
+  .delete-icon-container, .list-delete-btn {
+    display: none;
+    visibility: none;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+  }
+
+  .close-popup-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .counter-plus-btn,
+  .counter-minus-btn {
+    margin: 0;
+  }
+
+  .row:hover .counter-plus-btn,
+  .row:hover .counter-minus-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+  .row:hover .edit-icon-container {
+    border-left: none;
+    padding-left: 0;
+  }
+
+  .list-title {
+    gap: 16px;
+  }
+
+  .current-list-title-container h2 {
+    -webkit-line-clamp: 4;
+    font-size: 20px;
+  }
+
+  .drag-handle {
+    display: flex;
+  }
+
+  .title {
+    font-size: 18px;
+  }
+}

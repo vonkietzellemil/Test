@@ -1,18 +1,27 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" data-theme="dark">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="images/stacked-logo.png">
+    <link rel="icon" type="image/png" href="assets/img/stacked-logo.png">
+
+    <!-- Font -->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
+
+
     <title>Stacked - List Overview</title>
 
-    <link rel="stylesheet" href="styles/general.css">
-    <link rel="stylesheet" href="styles/menu.css">
-    <link rel="stylesheet" href="styles/modals.css">
-    <link rel="stylesheet" href="styles/section1.css">
-    <link rel="stylesheet" href="styles/section2.css">
-    <link rel="stylesheet" href="styles/theme.css">
-    <link rel="stylesheet" href="styles/small-devices.css">
+    <link rel="stylesheet" href="assets/css/root.css">
+    <link rel="stylesheet" href="assets/css/general.css">
+    <link rel="stylesheet" href="assets/css/menu.css">
+    <link rel="stylesheet" href="assets/css/modals.css">
+    <link rel="stylesheet" href="assets/css/section1.css">
+    <link rel="stylesheet" href="assets/css/section2.css">
+    <link rel="stylesheet" href="assets/css/theme.css">
+    <link rel="stylesheet" href="assets/css/small-devices.css">
 
     <!-- Android PWA -->
     <link rel="manifest" href="manifest.json">
@@ -22,8 +31,11 @@
     <div class="container">
       <header class="header-container">
         <h1 class="header">Stacked</h1>
+        <button id="openSettingsBtn" class="menu-btn" class="menu-side-btn">        
+          <img class="menu-icon" src="assets/img/settings-icon.svg">
+        </button>
         <label class="theme-switch">
-          <input type="checkbox" id="themeToggle">
+          <input type="checkbox" id="themeToggle" data-theme="dark">
           <span class="slider round"></span>
         </label>
       </header>
@@ -34,6 +46,14 @@
         <section id="view-overview">
           <section id="overviewSection">
             <div id="listsContainer"></div>
+            <div class="create-new-list-menu-container">
+              <div id="createNewListMenu" class="create-new-list-menu">
+                <input id="newListNameInput" type="text" placeholder="Name your list"> 
+                <button id="createNewListBtn" class="create-new-list-btn">
+                  <img class="add-icon" src="assets/img/plus-icon.svg">
+                </button>
+              </div>
+            </div>
           </section>
         </section>
 
@@ -43,14 +63,14 @@
             <div class="list-title">
               <div class="back-btn-container">
                 <button id="backToOverviewBtn" class="back-btn" type="button">
-                  <img class="back-icon" src="images/back-icon.svg">
+                  <img class="back-icon" src="assets/img/back-icon.svg">
                 </button>
               </div>
               <div class="current-list-title-container">
                 <h2 id="currentListTitle"></h2>
               </div>
               <button id="openListSettingsBtn" class="open-list-settings-btn" type="button">
-                <img src="images/slider-horizontal-icon.svg">
+                <img src="assets/img/slider-horizontal-icon.svg">
               </button>
             </div>
             
@@ -72,7 +92,7 @@
             <div class="list-title">
               <div class="back-btn-container">
                 <button id="backToListBtn" class="back-btn" type="button">
-                  <img class="back-icon" src="images/back-icon.svg">
+                  <img class="back-icon" src="assets/img/back-icon.svg">
                 </button>
               </div>
               <div class="current-list-title-container">
@@ -80,7 +100,7 @@
                 <!-- <p>settings</p> -->
               </div>
               <button class="open-list-settings-stats-btn" type="button">
-                <img src="images/info-icon.svg">
+                <img src="assets/img/info-icon.svg">
                 <div class="list-stats">
                   <p class="list-stat-title">Name:</p>
                   <span id="listStatsName" class="list-stat-value">-</span>
@@ -124,21 +144,6 @@
         </section>
       </main>
 
-
-      <!-- Menu at the Bottom -->
-      <footer class="menu-container">
-        <button id="openSettingsBtn" class="menu-btn" class="menu-side-btn">        
-          <img class="menu-icon" src="images/settings-icon.svg">
-        </button>
-        <a href="second-page.html">
-          <button data-i18n="configureNewListBtn" id="configureNewListBtn" class="menu-btn">
-          Liste erstellen
-        </button>
-        </a>
-        <button class="menu-btn">        
-          <img class="menu-icon" class="menu-side-btn" src="images/help-icon.svg">
-        </button>
-      </footer>
     </div>
     
     <div id="modalContainer"></div>
@@ -382,18 +387,18 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
-    <script defer src="scripts/modal.js"></script>
-    <script defer src="scripts/swipe-to-delete.js"></script>
-    <script defer src="scripts/storage.js"></script>
-    <script defer src="scripts/settings.js"></script>
-    <script defer src="scripts/overview.js"></script>
-    <script defer src="scripts/list.js"></script>
-    <script defer src="scripts/router.js"></script>
-    <script defer src="scripts/service-worker.js"></script>
-    <script defer src="scripts/lang.js"></script>
-    <script defer src="scripts/theme.js"></script>
+    <script defer src="assets/js/modal.js"></script>
+    <script defer src="assets/js/swipe-to-delete.js"></script>
+    <script defer src="assets/js/storage.js"></script>
+    <script defer src="assets/js/settings.js"></script>
+    <script defer src="assets/js/overview.js"></script>
+    <script defer src="assets/js/list.js"></script>
+    <script defer src="assets/js/router.js"></script>
+    <script defer src="assets/js/service-worker.js"></script>
+    <script defer src="assets/js/lang.js"></script>
+    <script defer src="assets/js/theme.js"></script>
     
     <!-- Android PWA -->
-    <script defer src="scripts/pwa.js"></script>
+    <script defer src="js/pwa.js"></script>
   </body>
 </html>
