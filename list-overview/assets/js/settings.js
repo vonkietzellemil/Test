@@ -49,11 +49,11 @@ function systemPrefersDark() {
 
 function applyTheme(theme) {
   if (theme === "dark") {
-    document.body.classList.add("dark");
+    document.html.setAttribute("data-theme", dark);
   } else if (theme === "light") {
-    document.body.classList.remove("dark");
+    document.html.setAttribute("data-theme", light);
   } else {
-    document.body.classList.toggle("dark", systemPrefersDark());
+    document.html.setAttribute("data-theme", systemPrefersDark());
   }
 }
 

@@ -30,6 +30,6 @@
   filter: invert();
 }
 
-[data-theme="dark"] .add-icon {
+[data-theme="dark"] .add-icon, .settings-icon {
   filter: none;
 }

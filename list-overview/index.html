@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de" data-theme="dark">
+<html lang="de">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,6 +16,7 @@
 
     <link rel="stylesheet" href="assets/css/root.css">
     <link rel="stylesheet" href="assets/css/general.css">
+    <link rel="stylesheet" href="assets/css/header.css">
     <link rel="stylesheet" href="assets/css/menu.css">
     <link rel="stylesheet" href="assets/css/modals.css">
     <link rel="stylesheet" href="assets/css/section1.css">
@@ -30,14 +31,26 @@
   <body>
     <div class="container">
       <header class="header-container">
-        <h1 class="header">Stacked</h1>
-        <button id="openSettingsBtn" class="menu-btn" class="menu-side-btn">        
-          <img class="menu-icon" src="assets/img/settings-icon.svg">
-        </button>
-        <label class="theme-switch">
-          <input type="checkbox" id="themeToggle" data-theme="dark">
-          <span class="slider round"></span>
-        </label>
+        <div class="top-btns-container">
+          <h1 class="header">Stacked</h1>
+          <button id="" class="primary-btn">       
+            <img src="assets/img/filter-icon.svg">
+          </button>
+          <button id="openSettingsBtn" class="primary-btn">       
+            <div>
+              <img class="settings-icon" src="assets/img/settings-icon.svg">
+            </div> 
+          </button>
+          
+          <label class="theme-switch">
+            <input type="checkbox" id="themeToggle" data-theme="dark">
+            <span class="slider round"></span>
+          </label>
+        </div>
+        <div class="search-bar-wrapper">
+          <input type="text" placeholder="Search lists">
+          <img src="assets/img/search-icon.svg">
+        </div>
       </header>
       
       <main id="mainContent">

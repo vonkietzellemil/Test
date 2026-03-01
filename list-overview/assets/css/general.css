@@ -41,24 +41,11 @@ body {
   transition: transform 0.4s ease;
 }
 
-.header-container {
-  display: flex;
-  align-items: center;
-  gap: 40px;
-  margin-bottom: 10px;
-}
-
-.header {
-  font-size: 30px;
-  font-weight: 600;
+.h1 {
+  font-size: 32px;
+  font-weight: bold;
   margin: 0;
   background: var(--color-text);
-  background-size: 300%;
-  background-position: 0% 50%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-
-  animation: gradientMove 4s ease-in-out infinite;
 }
 
 #mainContent, .modal-card {
@@ -99,6 +86,9 @@ body {
 }
 
 [hidden] { display: none !important; }
+
+
+
 
 
 

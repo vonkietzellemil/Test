@@ -8,13 +8,13 @@ function applyTheme(theme) {
   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
   if (theme === 'dark') {
-    document.body.classList.add('dark');
+    document.documentElement.setAttribute('data-theme', theme);
     themeToggle.checked = true;
   } else if (theme === 'light') {
-    document.body.classList.remove('dark');
+    document.documentElement.setAttribute('data-theme', theme);
     themeToggle.checked = false;
   } else {
-    document.body.classList.toggle('dark', prefersDark);
+    document.documentElement.setAttribute('data-theme', prefersDark);
     themeToggle.checked = prefersDark;
   }
 }
