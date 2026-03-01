@@ -80,10 +80,7 @@ function openCreateNewListMenu() {
   createNewListMenu.classList.add("active");
   createNewListBtn.classList.add("close");
   newListNameInput.style.display = "block";
-  
-  setTimeout(() => {
-    newListNameInput.focus();
-  }, 50);
+  newListNameInput.focus();
 }
 
 // ---- Submit ----
