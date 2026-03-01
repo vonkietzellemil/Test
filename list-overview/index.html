@@ -46,10 +46,10 @@
         <section id="view-overview">
           <section id="overviewSection">
             <div id="listsContainer"></div>
-            <div class="create-new-list-menu-container">
+            <div id="createNewListMenuContainer" class="create-new-list-menu-container">
               <div id="createNewListMenu" class="create-new-list-menu">
-                <input id="newListNameInput" type="text" placeholder="Name your list"> 
-                <button id="createNewListBtn" class="create-new-list-btn">
+                <input id="newListNameInput" type="text" placeholder="Name your list" autocomplete="off"> 
+                <button id="openNewListMenuBtn" class="create-new-list-btn">
                   <img class="add-icon" src="assets/img/plus-icon.svg">
                 </button>
               </div>
@@ -205,11 +205,11 @@
 
 
             <p class="settings-subsection-title">Andere</p>
-            <button class="settings-nav-btn settings-subsection-other" id="exportDataBtn">
+            <button class="settings-nav-btn settings-subsection-other" id="langBtn">
               Sprache
             </button>
 
-            <button class="settings-nav-btn settings-subsection-other" id="importDataBtn">
+            <button class="settings-nav-btn settings-subsection-other" id="deleteAllDataBtn">
               Alle Daten Löschen
             </button>
             

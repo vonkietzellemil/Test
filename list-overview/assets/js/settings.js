@@ -775,3 +775,21 @@ document.addEventListener("performanceModeChanged", () => {
     window.forceRerenderRows();
   }
 });
+
+
+
+
+// ----------------------------------
+// Delete All Data BTN
+// ----------------------------------
+const deleteMyDataBtn = document.getElementById("deleteAllDataBtn");
+
+deleteMyDataBtn.addEventListener("click", () => {
+  clearLocalStorage();
+  closeSettings();
+  renderOverview();
+});
+
+function clearLocalStorage() {
+  window.localStorage.clear()
+}

@@ -54,37 +54,81 @@ function openEditListModal(list) {
   });
 }
 
-const createNewListBtn = document.getElementById("createNewListBtn")
+const createNewListMenuContainer = document.getElementById("createNewListMenuContainer");
+const createNewListMenu = document.getElementById("createNewListMenu");
+const createNewListBtn = document.getElementById("openNewListMenuBtn");
+const newListNameInput = document.getElementById("newListNameInput");
 
-createNewListBtn?.addEventListener("click", openCreateNewListMenu);
+let isCreateMenuOpen = false;
 
-// ---- Create List Menu ----
+// Button nur EINMAL registrieren
+createNewListBtn?.addEventListener("click", handleCreateButtonClick);
+
+function handleCreateButtonClick() {
+  if (!isCreateMenuOpen) {
+    openCreateNewListMenu();
+  } else {
+    submitCreateNewList();
+  }
+}
+
+// ---- Open ----
 function openCreateNewListMenu() {
-  const createNewListMenu = document.getElementById("createNewListMenu");
-  const newListNameInput = document.getElementById("newListNameInput");
+  isCreateMenuOpen = true;
 
+  createNewListMenuContainer.classList.add("active");
   createNewListMenu.classList.add("active");
+  createNewListBtn.classList.add("close");
   newListNameInput.style.display = "block";
+  newListNameInput.focus();
+}
 
+// ---- Submit ----
+function submitCreateNewList() {
+  const name = newListNameInput.value.trim();
 
-  const closeNewListModalBtn = document.getElementById("closeModalBtn");
-  const createNewListBtn = document.getElementById("createNewListBtn");
+  if (!name) {
+    closeCreateNewListMenu();
+    return;
+  }
 
-  closeNewListModalBtn?.addEventListener("click", deleteModal);
+  const newList = StorageAPI.createList(name);
+  closeCreateNewListMenu();
+  AppRoute.toListSettings(newList);
+}
 
-  createNewListBtn?.addEventListener("click", () => {
-    const name = newListNameInput.value.trim();
-    if (!name) return;
+// ---- Key handling (auch nur einmal!) ----
+newListNameInput?.addEventListener("keyup", (e) => {
+  if (!isCreateMenuOpen) return;
 
-    const newList = StorageAPI.createList(name);
-    deleteModal();
-    AppRoute.toListSettings(newList);
-  });
+  if (!newListNameInput.value) {
+    createNewListBtn.classList.add("close");
+    createNewListBtn.classList.remove("add");
+  } else {
+    createNewListBtn.classList.remove("close");
+    createNewListBtn.classList.add("add");
+  }
 
-  newListNameInput?.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") createNewListBtn.click();
-    if (e.key === "Escape") deleteModal();
-  });
+  if (e.key === "Enter") {
+    submitCreateNewList();
+    return;
+  }
+
+  if (e.key === "Escape") {
+    closeCreateNewListMenu();
+    return;
+  }
+});
+
+// ---- Close ----
+function closeCreateNewListMenu() {
+  isCreateMenuOpen = false;
+
+  createNewListMenuContainer.classList.remove("active");
+  createNewListMenu.classList.remove("active");
+  createNewListBtn.classList.remove("close", "add");
+  newListNameInput.style.display = "none";
+  newListNameInput.value = "";
 }
 
 function getListEnableCounter(list) {

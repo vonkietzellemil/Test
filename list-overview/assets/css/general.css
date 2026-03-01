@@ -104,11 +104,14 @@ body {
 
 .create-new-list-menu-container {
   position: absolute;
-  left: 12px;
   right: 12px;
   bottom: 12px;
   display: flex;
   justify-content: end;
+}
+
+.create-new-list-menu-container.active {
+  left: 12px;
 }
 
 .create-new-list-menu {
@@ -150,7 +153,7 @@ body {
   aspect-ratio: 1 / 1;
   border: none;
 
-  transition: background-color 0.15s ease-in-out, scale 0.15s ease-in-out;
+  transition: all 0.15s ease-in-out;
 }
 
 .create-new-list-btn:hover {
@@ -159,6 +162,18 @@ body {
 
 .create-new-list-btn:active {
   scale: 0.9;
+}
+
+.create-new-list-btn.close {
+  background-color: var(--color-danger);
+}
+
+.create-new-list-btn.close img {
+  transform: rotate(45deg);
+}
+
+.create-new-list-btn.add {
+  background-color: var(--color-success);
 }
 
 .create-new-list-menu.active {

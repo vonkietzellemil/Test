@@ -242,13 +242,6 @@ function addRowToCurrentList() {
   renderList(list.id);
 }
 
-// Optional: ESC schließt Modal
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape" && editRowModal && !editRowModal.classList.contains("hidden")) {
-    closeEditRowModal();
-  }
-});
-
 addBtn?.addEventListener("click", addRowToCurrentList);
 input?.addEventListener("keydown", (e) => {
   if (e.key === "Enter") addRowToCurrentList();
