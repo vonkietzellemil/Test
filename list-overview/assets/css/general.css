@@ -163,6 +163,7 @@ body {
 
 .create-new-list-btn.close {
   background-color: var(--color-danger);
+  border-radius: 100px;
 }
 
 .create-new-list-btn.close img {
@@ -171,15 +172,11 @@ body {
 
 .create-new-list-btn.add {
   background-color: var(--color-success);
+  border-radius: 100px;
 }
 
 .create-new-list-menu.active {
   width: 100%;
-}
-
-.create-new-list-btn.active {
-  border-radius: 50%;
-  background-color: var(--color-success);
 }
 
 .add-icon {
