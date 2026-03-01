@@ -60,7 +60,7 @@ body {
   flex: 1;
   padding: 24px;
   border-radius: 16px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5), 0 14px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
   background-color: var(--color-surface);
   color: var(--main-color);
   border: 2px solid var(--color-border);
@@ -110,7 +110,7 @@ body {
   box-sizing: border-box;
   padding: 4px;
   border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5), 0 14px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
   background-color: var(--color-surface);
   color: var(--main-color);
   border: 2px solid var(--color-border);
