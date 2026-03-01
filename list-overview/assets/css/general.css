@@ -108,10 +108,12 @@ body {
   bottom: 12px;
   display: flex;
   justify-content: end;
+  transition: bottom 0.4s cubic-bezier(0.86, 0, 0.07, 1);
 }
 
 .create-new-list-menu-container.active {
   left: 12px;
+  bottom: 200px;
 }
 
 .create-new-list-menu {
