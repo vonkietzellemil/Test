@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+  <a data-theme="dark" href="index.html" id="p">Hello</a>
+
+  <script>
+    const theme = localStorage.getItem("theme");
+    const p = document.getElementById("p");
+    console.log(theme);
+    console.log(p);
+
+    p.innerHTML = "Your theme is: " + theme
+  </script>
+</body>
+</html>

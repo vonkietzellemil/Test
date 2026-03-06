@@ -44,9 +44,9 @@
   align-items: center;
   height: 50px;
   padding: 0 0 0 8px;
-  border-right: 1px solid rgba(255, 255, 255, 0);
-  border-left: 1px solid rgba(255, 255, 255, 0);
-  border-bottom: 1px solid gray;
+  border: 1px solid var(--color-highlight);
+  border-bottom: 1px solid var(--color-border);
+  border: 1px solid var(--color-);
   position: relative;
   transition: 0.7s;
   touch-action: pan-y;   /* vertikal scrollen weiterhin möglich */
@@ -57,22 +57,16 @@
   background-color: rgb(218, 218, 218);
 }
 
-body.dark .row.drag-ghost {
-  box-shadow: 0 0px 15px rgba(255, 255, 255, 0.9);
-  background-color: rgb(20, 20, 20);
-}
-
 .row:hover {
-  border-left: 1px solid gray;
-  border-right: 1px solid gray;
-  border-bottom: 1px solid white;
+  border-radius: 16px;
+  border: 1px solid var(--color-highlight);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   padding: 10px 10px 10px 8px;
 }
 
 .row:hover .drag-handle {
   opacity: 1;
-  border-right: 1px solid gray;
+  border-right: 1px solid var(--color-border);
 }
 
 .row:hover .delete-icon-container,
@@ -151,7 +145,7 @@ body.dark .row.drag-ghost {
   cursor: pointer;
   transition: all 0.4s;
 
-  border-right: 1px solid gray;
+  border-right: 1px solid var(--color-border);
 }
 
 .delete-icon {

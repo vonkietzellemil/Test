@@ -7,8 +7,6 @@ let rowsSortable = null;
 // - rows have count + content (content unused for now)
 // =====================================================
 
-const input = document.getElementById("input");
-const addBtn = document.getElementById("addToListBtn");
 const rowsContainer = document.getElementById("listRows"); // <-- wichtig
 const currentListTitle = document.getElementById("currentListTitle");
 const backBtn = document.getElementById("backToOverviewBtn");
@@ -227,25 +225,94 @@ function createRowElement(rowData, list, mode) {
   return row;
 }
 
-function addRowToCurrentList() {
+
+// ----------------------------
+// Create New Entry
+// ----------------------------
+const createNewEntryMenuContainer = document.getElementById("createNewEntryMenuContainer");
+const createNewEntryMenu = document.getElementById("createNewEntryMenu");
+const createNewEntryBtn = document.getElementById("openNewEntryMenuBtn");
+const newEntryNameInput = document.getElementById("newEntryNameInput");
+
+isCreateEntryMenuOpen = false;
+
+createNewEntryBtn.addEventListener("click", handleCreateEntryButtonClick);
+
+function handleCreateEntryButtonClick() {
+  if (!isCreateEntryMenuOpen) {
+    openCreateNewEntryMenu();
+  } else {
+    submitCreateNewEntry();
+  }
+}
+
+// ---- Open ----
+function openCreateNewEntryMenu() {
+  isCreateEntryMenuOpen = true;
+
+  createNewEntryMenuContainer.classList.add("active");
+  createNewEntryMenu.classList.add("active");
+  createNewEntryBtn.classList.add("close");
+  newEntryNameInput.style.display = "block";
+  newEntryNameInput.focus();
+}
+
+// ---- Submit ----
+function submitCreateNewEntry() {
   const listId = AppRoute.currentListId;
   if (!listId) return;
 
-  const text = input.value.trim();
-  if (!text) return;
+  const name = newEntryNameInput.value.trim();
 
-  const newRow = StorageAPI.addRow(listId, text);
+  if (!name) {
+    closeCreateNewEntryMenu();
+    return;
+  }
+
+  const newRow = StorageAPI.addRow(listId, name);
   const list = StorageAPI.getListById(listId);
 
   rowsContainer.appendChild(createRowElement(newRow, list, StorageAPI.getRowSortMode(listId)));
-  input.value = "";
+  newEntryNameInput.value = "";
   renderList(list.id);
+
+  closeCreateNewEntryMenu();
 }
 
-addBtn?.addEventListener("click", addRowToCurrentList);
-input?.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") addRowToCurrentList();
+// ---- Key handling (auch nur einmal!) ----
+newEntryNameInput?.addEventListener("keyup", (e) => {
+  if (!isCreateEntryMenuOpen) return;
+
+  if (!newEntryNameInput.value) {
+    createNewEntryBtn.classList.add("close");
+    createNewEntryBtn.classList.remove("add");
+  } else {
+    createNewEntryBtn.classList.remove("close");
+    createNewEntryBtn.classList.add("add");
+  }
+
+  if (e.key === "Enter") {
+    submitCreateNewEntry();
+    return;
+  }
+
+  if (e.key === "Escape") {
+    closeCreateNewEntryMenu();
+    return;
+  }
 });
+
+// ---- Close ----
+function closeCreateNewEntryMenu() {
+  isCreateEntryMenuOpen = false;
+
+  createNewEntryMenuContainer.classList.remove("active");
+  createNewEntryMenu.classList.remove("active");
+  createNewEntryBtn.classList.remove("close", "add");
+  newEntryNameInput.style.display = "none";
+  newEntryNameInput.value = "";
+}
+
 
 // ----------------------------
 // List Settings

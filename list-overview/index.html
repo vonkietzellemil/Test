@@ -59,10 +59,10 @@
         <section id="view-overview">
           <section id="overviewSection">
             <div id="listsContainer"></div>
-            <div id="createNewListMenuContainer" class="create-new-list-menu-container">
-              <div id="createNewListMenu" class="create-new-list-menu">
-                <input id="newListNameInput" class="add-entry-input" type="text" placeholder="Name your list" autocomplete="off"> 
-                <button id="openNewListMenuBtn" class="create-new-list-btn">
+            <div id="createNewListMenuContainer" class="create-menu-container">
+              <div id="createNewListMenu" class="create-menu">
+                <input id="newListNameInput" type="text" placeholder="Name your list" autocomplete="off"> 
+                <button id="openNewListMenuBtn" class="create-btn">
                   <img class="add-icon" src="assets/img/plus-icon.svg">
                 </button>
               </div>
@@ -86,16 +86,19 @@
                 <img src="assets/img/slider-horizontal-icon.svg">
               </button>
             </div>
-            
-            <section id="listSection1">
-              <input id="input" class="title-input" type="text" placeholder="Neuen Eintrag hinzufügen…">
-              <button data-i18n="addToListBtn" id="addToListBtn" class="standard-btn" type="button">hinzufügen</button>
-            </section>
           </section>
 
           <!-- WICHTIG: eigener Rows-Container für die List View -->
           <section id="listSection2">
             <div id="listRows"></div>
+            <div id="createNewEntryMenuContainer" class="create-menu-container">
+              <div id="createNewEntryMenu" class="create-menu">
+                <input id="newEntryNameInput" type="text" placeholder="Name your list" autocomplete="off"> 
+                <button id="openNewEntryMenuBtn" class="create-btn">
+                  <img class="add-icon" src="assets/img/plus-icon.svg">
+                </button>
+              </div>
+            </div>
           </section>
         </section>
 

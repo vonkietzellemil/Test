@@ -10,11 +10,7 @@
   }
 
   .row.delete-ready {
-    background: rgba(255, 0, 0, 0.08);
-  }
-
-  body.dark .row.delete-ready {
-    background-color: rgba(255, 0, 0, 0.5);
+    background: var(--color-danger);
   }
 
   .delete-icon-container, .list-delete-btn {
