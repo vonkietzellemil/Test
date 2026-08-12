@@ -723,7 +723,30 @@ async function finalizeImport(data) {
   if (data.order) write(KEYS.ORDER, data.order);
   if (data.settings) write(KEYS.SETTINGS, data.settings);
 
-  if (data.images) await setAllImages(data.images);
 
+
+  if (data.images?.length > 0) {
+    const estimate = await navigator.storage.estimate();
+
+    console.log({
+      quotaMB: (estimate.quota / 1024 / 1024).toFixed(2),
+      usageMB: (estimate.usage / 1024 / 1024).toFixed(2)
+    });
+
+    try {
+      await setAllImagesInBatches(data.images);
+
+      console.log("Images imported successfully");
+    } catch (err) {
+      console.error(
+        "Image import failed:",
+        err?.name,
+        err?.message,
+        err
+      );
+    }
+  }
+
+  console.log("Import Finsished")
   location.reload();
 }

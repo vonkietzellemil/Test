@@ -104,14 +104,14 @@ const dbPromise = new Promise((resolve, reject) => {
   request.onerror = () => reject(request.error);
 });
 
-async function saveImage(rowId, blob) {
+async function saveImage(rowId, blob, id=false) {
   const db = await dbPromise;
 
   return new Promise((resolve, reject) => {
     const tx = db.transaction("images", "readwrite");
 
     const image = {
-      id: crypto.randomUUID(),
+      id: id || crypto.randomUUID(),
       rowId,
       blob
     };
@@ -183,30 +183,49 @@ async function getAllImages() {
   });
 }
 
-async function setAllImages(images) {
+async function setAllImagesInBatches(images, batchSize = 25) {
   const db = await dbPromise;
 
-  const current = await getAllImages();
+  for (let i = 0; i < images.length; i += batchSize) {
+    const batch = images.slice(i, i + batchSize);
 
-  const merged = [
-    ...current,
-    ...images
-  ];
+    await new Promise((resolve, reject) => {
+      const tx = db.transaction("images", "readwrite");
+      const store = tx.objectStore("images");
 
-  return new Promise((resolve, reject) => {
-    const tx = db.transaction(
-      "images",
-      "readwrite"
-    );
+      tx.oncomplete = () => {
+        console.log(
+          `Imported ${Math.min(i + batch.length, images.length)}/${images.length}`
+        );
+        resolve();
+      };
 
-    const store = tx.objectStore("images");
+      tx.onerror = () => reject(tx.error);
+      tx.onabort = () => reject(tx.error);
 
-    merged.forEach(img => store.put(img));
+      try {
+        for (const img of batch) {
+          if (!img?.id || !img?.rowId || !img?.blob) {
+            console.warn("Skipping invalid image:", img);
+            continue;
+          }
 
-    tx.oncomplete = resolve;
-    tx.onerror = reject;
-  });
+          store.put({
+            id: img.id,
+            rowId: img.rowId,
+            blob: img.blob
+          });
+        }
+      } catch (err) {
+        reject(err);
+      }
+    });
+
+    // give browser breathing room
+    await new Promise(r => setTimeout(r, 10));
+  }
 }
+
 
 
 
@@ -225,7 +244,6 @@ async function openEditModal(item) {
       getEditNameInput("editListTitleInput", "Rename this item") +
       getEditRowContentInput("editNoteInput", "Add a note...") +
       getImageSection(await getRowImages(item.id));
-
 
     modalBtns = getModalConfirmBtn("saveChangesToListBtn", "Save Changes");
 
@@ -823,18 +841,6 @@ const ENTITY_TYPES = {
     addIcon: icons.general.addLabel,
     addText: "Add Category",
     addPlaceholder: "Add Category",
-  },
-};
-
-const CATEGORY_KINDS = {
-  lists: {
-    allowedParentTypes: ["root"],
-    allowedChildTypes: ["list"],
-  },
-
-  entries: {
-    allowedParentTypes: ["list"],
-    allowedChildTypes: ["row"],
   },
 };
 

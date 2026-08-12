@@ -74,7 +74,7 @@ function openSettings() {
   container.style.transform = "scale(0.94)";
   showPage("settingsPageRoot");
   syncThemeRadios();
-  renderStats();
+  // renderStats();
   renderInfo();
 }
 
@@ -405,7 +405,6 @@ document.getElementById("importFileInput")?.addEventListener("change", async (e)
 
   // Backup document.getElementll asyncen Daten
   const currentData = await StorageAPI.getData();
-  localStorage.setItem("stacked-auto-backup", JSON.stringify(currentData));
 
   const reader = new FileReader();
   reader.onload = () => {
@@ -431,6 +430,7 @@ function mergeData(current, incoming) {
   // =========================
   // ITEMS MERGE
   // =========================
+  
   const mergedLists = mergeItems([...(current.lists || [])], [...(incoming.lists || [])]);
   const mergedRows = mergeItems([...(current.rows || [])], [...(incoming.rows || [])]);
   const mergedCategories = mergeItems([...(current.categories || [])], [...(incoming.categories || [])]);
@@ -440,6 +440,8 @@ function mergeData(current, incoming) {
     ...incoming.order
   };
 
+  console.log(incoming)
+  console.log(incoming.images)
   return {
     ...current,
     lists: mergedLists,
@@ -447,6 +449,7 @@ function mergeData(current, incoming) {
     categories: mergedCategories,
     order: mergedOrder,
     settings: incoming.settings || current.settings,
+    images: incoming.images
   };
 }
 
