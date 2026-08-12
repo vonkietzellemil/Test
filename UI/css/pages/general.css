@@ -1,0 +1,122 @@
+/* =====================================================
+Pages and overlay/ background when opening sidebar
+===================================================== */
+
+#pageOverlay {
+  position: fixed;
+  inset: 0;
+
+  z-index: var(--z-overlay);
+  
+  opacity: 0;
+  touch-action: pan-y;
+  pointer-events: none;
+  transition: opacity var(--duration-fast);
+}
+
+/* Active state */
+#pageOverlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+#pagesBackground {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-sidebar);
+
+  background: color-mix(in srgb, var(--color-secondary) 60%, transparent);
+
+  border-radius: 20px;
+
+  transform: scale(0.9) translateX(0);
+  opacity: 0;
+
+  transition:
+    transform var(--duration-slow) var(--ease-bounce),
+    opacity var(--duration-slow);
+
+  pointer-events: none;
+}
+
+#pagesContainer {
+  background-color: var(--color-background);
+  height: 100%;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+
+  touch-action: pan-y;
+
+  transition: transform var(--duration-slow) var(--ease-bounce), border-radius var(--duration-slow) ease-out;
+}
+
+.page {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  background-color: var(--color-background);
+  inset: 0;
+}
+
+.page-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-3) var(--space-3) var(--space-3);
+
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  border-bottom: 1px solid color-mix(in srgb, var(--color-primary) 8%, transparent);
+}
+
+.page-header .title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+
+.open-sidebar-button {
+  transition: transform 0.1s linear;
+}
+
+.page-header .title {
+  transition: transform 0.1s linear;
+}
+
+
+/* On ceation of page */
+.page-enter {
+  transform: translateX(100%);
+}
+
+/* Slide page into screen */
+.page-enter-active {
+  transform: translateX(0);
+  transition: transform 300ms ease;
+}
+
+/* Apply to the current behind page */
+.page-behind {
+  transform: translateX(-35%);
+  pointer-events: none;
+  transition: transform 300ms ease;
+}
+
+
+/* Close current page */
+.page-exit-active {
+  transform: translateX(100%);
+  transition: transform 300ms ease;
+}
+
+
+/* Return */
+.page-return {
+  transform: translateX(0);
+  transition: transform 300ms ease;
+}

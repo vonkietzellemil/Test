@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="css/main.css">
+
+  <title>UI Components</title>
+</head>
+<body>
+  <div id="App">
+    <div id="AppContent">
+
+      <div id="sidebar" class="sidebar">
+
+        <div class="sidebar-header">
+          <h1>Stacked</h1>
+        </div>
+
+        <!-- Main navigation -->
+        <div class="sidebar-section">
+          <div class="section-header">
+            <p>Navigation</p>
+          </div>
+
+          <div class="sidebar-tabs">
+            <button class="sidebar-nav-option active" data-pageconfig="lists.root">
+              <span>📋</span>
+              <span>Lists</span>
+            </button>
+
+            <button class="sidebar-nav-option" data-pageconfig="archive.root">
+              <span>🗄️</span>
+              <span>Archive</span>
+            </button>
+
+            <button class="sidebar-nav-option" data-pageconfig="trash.root">
+              <span>🗑️</span>
+              <span>Trash</span>
+            </button>
+
+            <button class="sidebar-nav-option" data-pageconfig="test.root">
+              <span>📋</span>
+              <span>Test Page</span>
+            </button>
+
+          </div>
+        </div>
+
+        <!-- Bottom actions -->
+        <div class="sidebar-footer">
+
+          <div class="section-header">
+            <p>General</p>
+          </div>
+
+          <button class="sidebar-nav-option" data-pageconfig="settings.root">
+            <span>⚙️</span>
+            <span>Settings</span>
+          </button>
+
+          <button class="sidebar-action" data-action="support">
+            <span>💬</span>
+            <span>Contact Support</span>
+          </button>
+
+        </div>
+
+      </div>
+
+      <div id="pagesBackground"></div>
+      
+      <div id="pagesContainer">
+      
+        <div id="pageOverlay"></div>
+
+        
+        <div class="page" style="display: none;">
+          <div class="page-header">
+            
+            <div class="title-wrapper">
+              <button class="open-sidebar-button button icon-button">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm280-80h280v-560H480v560Z"/></svg>
+              </button>
+
+              <h2 class="title">Lists</h2>
+            </div>
+              
+
+            <div class="searchbar-wrapper">
+              <svg class="searchbar-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+              </svg>
+              <input class="input searchbar" placeholder="Search">
+            </div>
+            
+    
+
+            <div class="label-container">
+              <label class="label">
+                <input type="radio" name="label(custom id so no other page has the same radio)" checked>
+                <p>All</p>
+              </label>
+
+              <label class="label">
+                <input type="radio" name="label(custom id so no other page has the same radio)">
+                <p>Personal</p>
+              </label>
+
+              <label class="label">
+                <input type="radio" name="label(custom id so no other page has the same radio)">
+                <p>Work</p>
+              </label>
+
+              <label class="label">
+                +
+              </label>
+
+            </div>
+          </div>
+
+          <div class="floating-actions-menu liquid-glass">
+            <button class="button icon-button">
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M320-440v-287L217-624l-57-56 200-200 200 200-57 56-103-103v287h-80ZM600-80 400-280l57-56 103 103v-287h80v287l103-103 57 56L600-80Z"/></svg>
+            </button>
+
+            <button class="button icon-button">
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M120-240v-80h240v80H120Zm0-200v-80h480v80H120Zm0-200v-80h720v80H120Z"/></svg>
+            </button>
+
+            <button class="button icon-button">
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M440-160q-17 0-28.5-11.5T400-200v-240L168-736q-15-20-4.5-42t36.5-22h560q26 0 36.5 22t-4.5 42L560-440v240q0 17-11.5 28.5T520-160h-80Zm40-308 198-252H282l198 252Zm0 0Z"/></svg>
+            </button>
+
+            <button class="button icon-button">
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/></svg>
+            </button>
+          </div>
+
+          <button class="button icon-button liquid-glass floating-action-button">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/></svg>
+          </button>
+
+          <div class="items-container">
+              
+          </div>
+        </div>
+        
+
+
+
+
+        <div style="display: none;" id="componentsPage" class="page">
+          <div class="page-header">
+            
+            <h2 class="title">Components Page</h2>
+            
+            <div class="searchbar-container">
+              <button class="open-sidebar-button button icon-button">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm280-80h280v-560H480v560Z"/></svg>
+              </button>
+              <input class="input searchbar" placeholder="Search">
+            </div>  
+          </div>
+
+          <div class="floating-actions-menu liquid-glass">
+            <button class="button icon-button">
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M320-440v-287L217-624l-57-56 200-200 200 200-57 56-103-103v287h-80ZM600-80 400-280l57-56 103 103v-287h80v287l103-103 57 56L600-80Z"/></svg>
+            </button>
+
+            <button class="button icon-button">
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M120-240v-80h240v80H120Zm0-200v-80h480v80H120Zm0-200v-80h720v80H120Z"/></svg>
+            </button>
+
+            <button class="button icon-button">
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M440-160q-17 0-28.5-11.5T400-200v-240L168-736q-15-20-4.5-42t36.5-22h560q26 0 36.5 22t-4.5 42L560-440v240q0 17-11.5 28.5T520-160h-80Zm40-308 198-252H282l198 252Zm0 0Z"/></svg>
+            </button>
+
+            <button class="button icon-button">
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/></svg>
+            </button>
+          </div>
+
+          <button class="button icon-button liquid-glass floating-action-button">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/></svg>
+          </button>
+
+          <div id="grid">
+  
+            <div>
+              <h2 class="header">Lists</h2>
+              <div class="items-container">
+                <!-- <div class="row" onclick="this.classList.toggle('active')">
+                  <div class="deleted-label" style="display: none;">
+                    14days
+                  </div>
+
+                  <div class="title-container">
+                    <div class="drag-handle" style="display: none;">⋮⋮</div>
+                    <div class="delete-icon-container">
+                      <svg class="delete-icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm80-160h80v-360h-80v360Zm160 0h80v-360h-80v360Z"/></svg>
+                    </div>
+                    <div class="edit-icon-container">
+                      <svg class="edit-icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M120-120v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm584-528 56-56-56-56-56 56 56 56Z"/></svg>
+                    </div>
+                    <div class="title-wrapper">
+                      <p class="title">
+                        List
+                      </p>
+                      <p class="subtitle">
+                        7
+                      </p>
+                    </div>
+                  </div>
+
+                  <svg class="favorite-icon${list.status?.favored ? " active" : ""}"
+                  xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Z"/></svg>
+
+                  <svg class="restore-icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M440-320h80v-166l64 62 56-56-160-160-160 160 56 56 64-62v166ZM280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Z"/></svg>
+
+                  <div class="open-btn-container">
+                    <button class="open-btn" type="button">
+                      <svg class="open-icon" xmlns="http://www.w3.org/2000/svg" height="42px" viewBox="0 -960 960 960" width="42px" fill="#e3e3e3"><path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z"/></svg>
+                    </button>
+                  </div>
+                </div> -->
+
+
+                <div class="list-item" id="testList">
+                  <div class="drag-progress"></div>
+
+                  <div class="drag-handle">
+                    ⋮⋮
+                  </div>
+
+                  <button class="list-main" type="button">
+
+                    <div class="list-content">
+                      <p class="list-title">Shopping List</p>
+                      <p class="list-meta">7 items • Last edited 2h ago</p>
+                    </div>
+
+                  </button>
+
+                  <div class="list-actions">
+
+                    <button class="favorite-btn" type="button">
+                      <svg viewBox="0 -960 960 960">
+                        <path d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Z"/>
+                      </svg>
+                    </button>
+
+                    <button class="more-btn" type="button">
+                      <svg viewBox="0 -960 960 960">
+                        <path d="M240-400q-33 0-56.5-23.5T160-480q0-33 23.5-56.5T240-560q33 0 56.5 23.5T320-480q0 33-23.5 56.5T240-400Zm240 0q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm240 0q-33 0-56.5-23.5T640-480q0-33 23.5-56.5T720-560q33 0 56.5 23.5T800-480q0 33-23.5 56.5T720-400Z"/>
+                      </svg>
+
+                      
+                      
+                    </button>
+
+                  </div>
+
+                </div>
+
+
+                <div class="list-item">
+
+                  <div class="drag-handle">
+                    ⋮⋮
+                  </div>
+
+                  <button class="list-main" type="button">
+
+                    <div class="list-content">
+                      <p class="list-title">Shopping List</p>
+                      <p class="list-meta">7 items</p>
+                    </div>
+
+                  </button>
+
+                  <div class="list-actions">
+
+                    <button class="favorite-btn active" type="button">
+                      <svg viewBox="0 -960 960 960">
+                        <path d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Z"/>
+                      </svg>
+                    </button>
+
+                    <button class="more-btn" type="button">
+                      <svg viewBox="0 -960 960 960">
+                        <path d="M240-400q-33 0-56.5-23.5T160-480q0-33 23.5-56.5T240-560q33 0 56.5 23.5T320-480q0 33-23.5 56.5T240-400Zm240 0q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm240 0q-33 0-56.5-23.5T640-480q0-33 23.5-56.5T720-560q33 0 56.5 23.5T800-480q0 33-23.5 56.5T720-400Z"/>
+                      </svg>
+                    </button>
+
+                  </div>
+
+                </div>
+
+
+                <div class="list-item">
+
+                  <div class="drag-handle">
+                    ⋮⋮
+                  </div>
+
+                  <button class="list-main" type="button">
+
+                    <div class="list-content">
+                      <p class="list-title">Shopping List</p>
+                      <p class="list-meta">7 items</p>
+                    </div>
+
+                  </button>
+
+                  <div class="list-actions">
+
+                    <button class="favorite-btn active" type="button">
+                      <svg viewBox="0 -960 960 960">
+                        <path d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Z"/>
+                      </svg>
+                    </button>
+
+                    <button class="more-btn" type="button">
+                      <svg viewBox="0 -960 960 960">
+                        <path d="M240-400q-33 0-56.5-23.5T160-480q0-33 23.5-56.5T240-560q33 0 56.5 23.5T320-480q0 33-23.5 56.5T240-400Zm240 0q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm240 0q-33 0-56.5-23.5T640-480q0-33 23.5-56.5T720-560q33 0 56.5 23.5T800-480q0 33-23.5 56.5T720-400Z"/>
+                      </svg>
+                    </button>
+
+                  </div>
+
+                </div>
+
+                <div class="list-item">
+
+                  <div class="drag-handle">
+                    ⋮⋮
+                  </div>
+
+                  <button class="list-main" type="button">
+
+                    <div class="list-content">
+                      <p class="list-title">Shopping List</p>
+                      <p class="list-meta">7 items</p>
+                    </div>
+
+                  </button>
+
+                  <div class="list-actions">
+
+                    <button class="favorite-btn active" type="button">
+                      <svg viewBox="0 -960 960 960">
+                        <path d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Z"/>
+                      </svg>
+                    </button>
+
+                    <button class="more-btn" type="button">
+                      <svg viewBox="0 -960 960 960">
+                        <path d="M240-400q-33 0-56.5-23.5T160-480q0-33 23.5-56.5T240-560q33 0 56.5 23.5T320-480q0 33-23.5 56.5T240-400Zm240 0q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm240 0q-33 0-56.5-23.5T640-480q0-33 23.5-56.5T720-560q33 0 56.5 23.5T800-480q0 33-23.5 56.5T720-400Z"/>
+                      </svg>
+                    </button>
+
+                  </div>
+
+                </div>
+
+                <div class="list-item">
+
+                  <div class="drag-handle">
+                    ⋮⋮
+                  </div>
+
+                  <button class="list-main" type="button">
+
+                    <div class="list-content">
+                      <p class="list-title">Shopping List</p>
+                      <p class="list-meta">7 items</p>
+                    </div>
+
+                  </button>
+
+                  <div class="list-actions">
+
+                    <button class="favorite-btn active" type="button">
+                      <svg viewBox="0 -960 960 960">
+                        <path d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Z"/>
+                      </svg>
+                    </button>
+
+                    <button class="more-btn" type="button">
+                      <svg viewBox="0 -960 960 960">
+                        <path d="M240-400q-33 0-56.5-23.5T160-480q0-33 23.5-56.5T240-560q33 0 56.5 23.5T320-480q0 33-23.5 56.5T240-400Zm240 0q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm240 0q-33 0-56.5-23.5T640-480q0-33 23.5-56.5T720-560q33 0 56.5 23.5T800-480q0 33-23.5 56.5T720-400Z"/>
+                      </svg>
+                    </button>
+
+                  </div>
+
+                </div>
+
+
+                <div class="list-item">
+
+                  <div class="drag-handle">
+                    ⋮⋮
+                  </div>
+
+                  <button class="list-main" type="button">
+
+                    <div class="list-content">
+                      <p class="list-title">Shopping List</p>
+                      <p class="list-meta">7 items</p>
+                    </div>
+
+                  </button>
+
+                  <div class="list-actions">
+
+                    <button class="favorite-btn active" type="button">
+                      <svg viewBox="0 -960 960 960">
+                        <path d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Z"/>
+                      </svg>
+                    </button>
+
+                    <button class="more-btn" type="button">
+                      <svg viewBox="0 -960 960 960">
+                        <path d="M240-400q-33 0-56.5-23.5T160-480q0-33 23.5-56.5T240-560q33 0 56.5 23.5T320-480q0 33-23.5 56.5T240-400Zm240 0q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm240 0q-33 0-56.5-23.5T640-480q0-33 23.5-56.5T720-560q33 0 56.5 23.5T800-480q0 33-23.5 56.5T720-400Z"/>
+                      </svg>
+                    </button>
+
+                  </div>
+
+                </div>
+                
+
+
+
+              </div>
+            </div>
+
+
+            <div>
+              <h2 class="header">Entries</h2>
+              <div class="items-container">
+                
+    
+                <div class="entry">
+                  <button class="check-btn"></button>
+
+                  <div class="entry-content">
+                    <div class="entry-title">Buy milk</div>
+                    <div class="entry-meta">
+                      Organic whole milk from Aldi
+                    </div>
+                  </div>
+
+                  <button class="favorite-btn"></button>
+
+                  <button class="more-btn"></button>
+                </div>
+
+
+              </div>
+            </div>
+
+
+
+
+            <div>
+              <h2 class="header">Categories</h2>
+              <div class="items-container">
+                
+    
+                <div class="category-header">
+
+                  <div>
+                    <button class="expand-btn">
+                      ▼
+                    </button>
+
+                    <span class="category-title">
+                      Groceries
+                    </span>
+
+                    <span class="badge badge--primary">
+                      12
+                    </span>
+
+                  </div>
+
+                  <div style="display: flex; align-items: center;">
+
+                    <button class="more-btn">
+                      <svg viewBox="0 -960 960 960">
+                        <path d="M240-400q-33 0-56.5-23.5T160-480q0-33 23.5-56.5T240-560q33 0 56.5 23.5T320-480q0 33-23.5 56.5T240-400Zm240 0q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm240 0q-33 0-56.5-23.5T640-480q0-33 23.5-56.5T720-560q33 0 56.5 23.5T800-480q0 33-23.5 56.5T720-400Z"/>
+                      </svg>
+                    </button>
+                  </div>
+
+                </div>
+
+
+              </div>
+            </div>
+
+
+            <div>
+              <h2 class="header">Card</h2>
+              <div class="card">
+
+                <header class="card__header">
+                  <h3>Account</h3>
+                </header>
+
+                <div class="card__body">
+                  Your information
+                </div>
+
+                <footer class="card__footer">
+                  <button class="button button--primary" onclick="App.sheets.push(App.sheets.createBottomSheet({ title: 'Save account?' }));">Save</button>
+                </footer>
+
+              </div>
+            </div>
+            
+
+
+            <div>
+              <h2 class="header">Searchbar</h2>
+              <input
+                class="input searchbar"
+                placeholder="Search"
+              />
+            </div>
+
+
+
+            <div>
+              <h2 class="header">Radio</h2>
+
+              <div class="radio-group">
+                <label class="radio">
+                  <input type="radio" name="theme" value="light" checked>
+                  <span class="radio__control"></span>
+                  <span>Light</span>
+                </label>
+
+                <label class="radio">
+                  <input type="radio" name="theme" value="dark">
+                  <span class="radio__control"></span>
+                  <span>Dark</span>
+                </label>
+
+                <label class="radio">
+                  <input type="radio" name="theme" value="system">
+                  <span class="radio__control"></span>
+                  <span>System</span>
+                </label>
+              
+              </div>
+            </div>
+            
+
+
+            <div>
+              <h2 class="header">Surface</h2>
+              <div
+                class="surface surface--raised"
+                style="
+                  height: 100px;
+                  width: 300px;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;"
+              ></div>
+            </div>
+
+            
+
+            <div>
+              <h2 class="header">Stack with buttons</h2>
+              <div class="stack">
+                <button class="button button--primary">Button in Stack</button>
+                <button class="button button--secondary" onclick="const root = document.documentElement; root.dataset.theme === 'dark' ? root.dataset.theme = '' : root.dataset.theme = 'dark'";>Light / Dark mode</button>
+                <button class="button button--danger" onclick="document.getElementById('modal').style.display = 'flex'";>Delete Account</button>
+              </div>
+            </div>
+            
+
+            <div>
+              <h2 class="header">Badge</h2>
+              <span class="badge badge--success">
+                Active
+              </span>
+            </div>
+            
+
+
+            <div>
+              <h2 class="header">Field</h2>
+              <div class="field">
+
+                <label>
+                  Email
+                </label>
+
+                <input
+                  class="input"
+                  placeholder="name@example.com"
+                />
+
+                <p class="field__hint">
+                  We'll never share your email.
+                </p>
+
+              </div>
+            </div>
+            
+
+
+            <div>
+              <h2 class="header">Textarea</h2>
+              <textarea class="textarea" placeholder="Write something..."></textarea>
+            </div>
+            
+
+
+            <div>
+              <h2 class="header">Select</h2>
+              <select class="select">
+
+                <option>
+                  Germany
+                </option>
+
+                <option>
+                  France
+                </option>
+
+              </select>
+            </div>
+            
+
+
+            <div>
+              <h2 class="header">Checkbox</h2>
+              <label class="checkbox">
+
+                <input type="checkbox">
+
+                <span>
+                  Accept terms
+                </span>
+
+              </label>
+            </div>
+
+            
+
+
+            <div>
+              <h2 class="header">Switch</h2>
+              <label class="switch">
+
+                <input type="checkbox">
+
+                <span></span>
+
+              </label>
+            </div>
+            
+
+
+            <div>
+              <h2 class="header">Tabs</h2>
+              <div class="tabs">
+
+                <button class="tabs__item active">
+                  Profile
+                </button>
+
+                <button class="tabs__item">
+                  Settings
+                </button>
+
+              </div>
+            </div>
+            
+
+            
+
+            <div>
+              <h2 class="header">Avatar</h2>
+              <div class="avatar">
+                EV
+              </div>
+            </div>
+
+
+
+
+            <div>
+              <h2 class="header">Empty</h2>
+              <div class="empty">
+
+                <h3>
+                  No messages
+                </h3>
+
+                <p>
+                  Your inbox is empty.
+                </p>
+
+                <button class="button button--primary">
+                  Create message
+                </button>
+
+              </div>
+            </div>
+            
+
+
+            <div>
+              <h2 class="header">Spinner</h2>
+              <div class="spinner"></div>
+            </div>
+            
+
+
+            <div>
+              <h2 class="header">Toast</h2>
+              <div class="toast toast--success">
+
+                <div class="toast__icon">
+                  ✓
+                </div>
+
+
+                <div>
+
+                <strong>
+                  Saved
+                </strong>
+
+                <p>
+                  Your changes were saved.
+                </p>
+
+                </div>
+
+
+                <button class="icon-button">
+                  ✕
+                </button>
+
+
+              </div>
+            </div>
+            
+
+            <div>
+              <h2 class="header">Alert</h2>
+              <div class="alert alert--danger">
+
+                <strong>
+                  Warning
+                </strong>
+
+                <p>
+                  Something went wrong.
+                </p>
+
+              </div>
+            </div>
+
+
+          </div>
+          
+        
+
+
+
+
+        </div>
+
+
+
+
+      </div>
+      
+
+
+
+      <!-- <div class="sheet__wrapper side--sheet" style="display: flex;">
+        <div class="sheet__backdrop"></div>
+
+
+          <div class="sheet">
+
+            <div class="sheet__handle"></div>
+
+            <h2 class="title">
+              <button class="button icon-button button--outline liquid-glass">✕</button>
+
+              Title
+            </h2>
+
+            <div class="sheet__content">
+
+              <form id="form">
+                <div class="field">
+
+                  <label>
+                    Select Filter
+                  </label>
+
+                  <select name="" id="" required class="select">
+                    <option value="" selected disabled>Available Filters</option>
+                    <option value=""></option>
+                    <option value=""></option>
+                  </select>
+
+                  <p class="field__hint">
+                    See all 
+                  </p>
+
+                </div>
+
+                <div class="field">
+
+                  <label>
+                    Sort by
+                  </label>
+
+                  <select name="" id="" class="select">
+                    <option value="" selected>Manual</option>
+                    <option value=""></option>
+                    <option value=""></option>
+                  </select>
+
+                  <p class="field__hint">
+                    See all →
+                  </p>
+
+                </div>
+
+
+              </form>
+              
+
+            </div>
+
+            
+            <button class="button button--secondary liquid-glass" style="width: 100%;">Close</button>
+
+        </div>
+      </div> -->
+
+
+
+
+
+      <div class="sheet__wrapper" style="display: none;">
+        <div class="sheet__backdrop"></div>
+
+
+          <div class="sheet">
+
+            <div class="sheet__handle"></div>
+
+            <h2 class="title">
+              <input class="input" type="text" placeholder="Name" form="form" value="Entry name" disabled="false">
+              <button class="button icon-button button--outline liquid-glass"
+                onclick="
+              
+                  document.querySelector('.sheet .title input').removeAttribute('disabled');
+                  document.querySelector('.sheet textarea').removeAttribute('disabled');
+                  
+                "
+              >✏️</button>
+            </h2>
+
+            <div class="sheet__content">
+
+              <form id="form">
+                <div class="field">
+
+                  <textarea class="textarea" placeholder="Add a note..." disabled></textarea>
+
+                </div>
+
+
+                <div class="field">
+
+                  <label>
+                    Attatched Images
+                  </label>
+
+                  <div style="background-color: red; width: 60px; height: 60px; border-radius: 12px;"
+                  onclick="
+              
+                  document.querySelector('.sheet .title input').disabled = true;
+                  document.querySelector('.sheet textarea').disabled = true;
+                  
+                "
+                  ></div>
+
+                  <p class="field__hint">
+                    See all →
+                  </p>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                      Counter 4
+                      <button class="button icon-button" style="color: white;">+</button>
+                      <button class="button icon-button" style="color: white;">-</button>
+                    </label>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                      Mark as...
+                    </label>
+
+                    <div>
+                      <label class="button button--outline">Done
+                        <input type="checkbox" hidden>
+                      </label>
+                      <label class="button button--outline">Favorite
+                        <input type="checkbox" hidden>
+                      </label>
+                    </div>
+
+                </div>
+
+              </form>
+              
+
+            </div>
+
+            
+            <button class="button button--secondary liquid-glass" style="width: 100%;">Close</button>
+
+        </div>
+      </div>
+
+
+
+      <div id="modal" class="modal" style="display: none;">
+
+        <div class="modal__backdrop"></div>
+
+        <div class="modal__content">
+
+          <header class="modal__header">
+            <h3>Delete account?</h3>
+
+            <button class="icon-button">
+              ✕
+            </button>
+          </header>
+
+
+          <div class="modal__body">
+            This action cannot be undone.
+          </div>
+
+
+          <footer class="modal__footer">
+
+            <button class="button button--secondary" onclick="document.getElementById('modal').style.display = 'none'">
+              Cancel
+            </button>
+
+            <button class="button button--danger">
+              Delete
+            </button>
+
+          </footer>
+
+        </div>
+
+      </div>
+
+
+
+
+
+
+
+    </div>
+    
+
+    <!-- Overlayer here -->
+
+
+  </div>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+
+  <script src="scripts/core/page.js"></script>
+
+
+  <script type="module" src="scripts/init.js"></script>
+  <script type="module" src="scripts/ui/autoPosition.js"></script>
+</body>
+</html>

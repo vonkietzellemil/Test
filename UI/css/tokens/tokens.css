@@ -1,0 +1,94 @@
+/* =================================   
+Spacing
+================================= */
+
+:root {
+  --space-0: 0;
+  --space-1: 0.25rem; /* 4px */
+  --space-2: 0.5rem;  /* 8px */
+  --space-3: 0.75rem; /* 12px */
+  --space-4: 1rem;    /* 16px */
+  --space-5: 1.5rem;  /* 24px */
+  --space-6: 2rem;    /* 32px */
+  --space-7: 3rem;    /* 48px */
+  --space-8: 4rem;    /* 64px */
+}
+
+
+/* =================================   
+Radius
+================================= */
+
+:root {
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-pill: 9999px;
+}
+
+
+/* =================================   
+Shadow
+================================= */
+
+:root {
+  --shadow-sm:
+    0 1px 2px rgba(0,0,0,.1);
+
+  --shadow-md:
+    0 4px 8px rgba(0,0,0,.12);
+
+  --shadow-lg:
+    0 8px 24px rgba(0,0,0,.16);
+}
+
+
+/* =================================   
+Border
+================================= */
+
+:root {
+  --border-color: var(--color-border);
+
+  --border-width: 1px;
+
+  --border-default:
+    var(--border-width) solid var(--border-color);
+}
+
+
+/* =================================   
+Z-index
+================================= */
+
+:root {
+  --z-sidebar: 0;
+  --z-app: 100;
+  --z-dropdown: 150;
+  --z-overlay: 200;
+  --z-modal: 250;
+  --z-toast: 300;
+  --z-tooltip: 400;
+}
+
+/* =================================   
+Animation
+================================= */
+
+:root {
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --duration-slow: 400ms;
+
+  --ease-default: ease;
+
+  --ease-in: cubic-bezier(0.55, 0, 1, 0.45);
+  --ease-out: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-in-out: cubic-bezier(0.37, 0, 0.63, 1);
+
+  --ease-main: cubic-bezier(0.4, 0, 0.2, 1); /* Standard Material-Ease */
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1); /* Schickes Nachfedern */
+  --ease-elastic: cubic-bezier(0.68, -0.6, 0.32, 1.6);
+
+}
